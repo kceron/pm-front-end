@@ -32,10 +32,10 @@ class Login extends React.Component {
   render() {
     return (
       <>
-      <div class="container__form container--signin">
+      <div className="container__form container--signin">
 
-      <form action="#" class="form" id="form2" onSubmit={this.handleSubmit}>
-        <h2 class="form__title">Log In</h2>
+      <form action="#" className="form" id="form2" onSubmit={this.handleSubmit}>
+        <h2 className="form__title">Log In</h2>
 
         <label>Username: </label>
         <input type="text" 

@@ -2,11 +2,36 @@ import React from "react"
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom' 
 import Login from "./Components/auth/Login"
 import SignUp from "./Components/auth/SignUp"
+import Header from "./Components/Header"
 
 class Home extends React.Component {
     state = {
         currentUser: null
     }
+
+    // autologin user in when component mounts
+  componentDidMount() {
+    // check if user is logged in, and set current user in state
+    fetch("http://localhost:3000/autologin", {
+      credentials: "include"
+    })
+      .then(r => {
+        if (r.ok) {
+          return r.json()
+        } else {
+          throw Error("Not logged in!")
+        }
+      })
+      .then(user => {
+        this.handleLogin(user)
+      })
+      .catch((err) => console.error(err))
+  }
+
+  // updateUser = newUser => {
+  //   this.setState({ currentUser: newUser })
+  // }
+// end of autologin
 
     handleLogin = currentUser => {
         // set current user, then redirect to home page
@@ -15,10 +40,22 @@ class Home extends React.Component {
         })
     }
 
+    handleLogout = () => {
+      fetch("http://localhost:3000/logout", {
+        credentials: "include"
+      })
+        .then(r => r.json())
+        .then(() => {
+          this.setState({ currentUser: null }, () => {
+            this.props.history.push('/')
+          })
+        })
+    }
 
     render () {
         return (
             <>
+            <Header currentUser={this.state.currentUser} handleLogout={this.handleLogout} />
             <main>
           <Switch>
             <Route path="/signup">
@@ -35,11 +72,9 @@ class Home extends React.Component {
             </Route>
           </Switch>
         </main>
-            
             </>
         )
-    }
-
+      }
 }
 
 export default withRouter(Home);

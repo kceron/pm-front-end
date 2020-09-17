@@ -1,17 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Header = ({currentUser}) => {
+const Header = ({currentUser, handleLogout }) => {
     return (
         <header>
             <div>
                 <Link to="/home">Home</Link>
-                <br />
-                <Link to="/signup">Signup</Link>
-                <br />
-                <Link to="/login">Login</Link>
             </div>
-
+            <div>
+                { currentUser ? (
+                     <button onClick={handleLogout}>Logout</button>
+                ) : (
+                    <>
+                        <Link to="/signup">Signup</Link>
+                        <br />
+                        <Link to="/login">Login</Link>
+                    </> 
+                )}
+            </div>
         </header>
     )
 }

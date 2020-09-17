@@ -16,17 +16,17 @@ class App extends React.Component {
     let allEvents = [];
     fetch("edamame/com")
       .then(r => r.json())
-      .then(recipeArr => {
-        recipeArr.map(recipe => {
-          const allRecipes = []
-          if (parseInt(evt.conceptionDate) === parseInt(birthdate)) {
-            allRecipes.push(recipe)
-          }
-        })
+      // .then(recipeArr => {
+      //   recipeArr.map(recipe => {
+      //     const allRecipes = []
+      //     if (parseInt(evt.conceptionDate) === parseInt(birthdate)) {
+      //       allRecipes.push(recipe)
+        //   }
+        // })
         // this.setState({   we dont have to setstate but we can 
         //   eventsfromBACKEND: allEvents
         // }, () => console.log(this.state.eventsfromBACKEND))
-      })
+      // })
   }
 // END OF FETCH
 
