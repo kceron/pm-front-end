@@ -1,9 +1,10 @@
-import React, { Component } from "react";
-import SignUp from "./Components/auth/SignUp";
+import React from "react";
+import { withRouter } from "react-router-dom";
 import Login from "./Components/auth/Login";
+import SignUp from "./Components/auth/SignUp";
 import Overlay from "./Components/auth/Overlay";
 
-export default class Home extends Component {
+class BeforeLogin extends React.Component {
   state = {
     rightPanelActive: false,
   };
@@ -18,8 +19,8 @@ export default class Home extends Component {
       rightPanelActive: false,
     });
 
-
   render() {
+    console.log("PROPS INSIDE BEFORE LG", this.props);
     const { handleClickSignUpButton, handleClickSignInButton } = this;
     const { rightPanelActive } = this.state;
 
@@ -43,3 +44,5 @@ export default class Home extends Component {
     );
   }
 }
+
+export default withRouter(BeforeLogin);
