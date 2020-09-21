@@ -3,36 +3,30 @@ import "./RecipeCard.css";
 
 class RecipeCard extends React.Component {
   render() {
-    console.log("FROM R CARD", this.props);
-    const { title, cooktime, ingredients, instructions, picture, vegetarian, favorite, } = this.props;
+    // console.log("FROM R CARD", this.props);
+    const {
+      title,
+      picture
+    } = this.props;
 
     return (
-      <div>
-        <li>
-          <span>{title}</span>
-        </li>
 
-        <div class="card-container">
-          <div class="card u-clearfix">
-            <div class="card-body">
-              <span class="card-number card-circle subtle">{cooktime}</span>
-              <span class="card-author subtle">John Smith</span>
-              <h2 class="card-title">{title}</h2>
-              <span class="card-description subtle">
-            {instructions}
-              </span>
-              <div class="card-read">Read</div>
-              <span class="card-tag card-circle subtle">C</span>
-            </div>
-            <img
-              src={picture}
-              alt=""
-              class="card-media"
-            />
+        <div className="card">
+          <img
+            src={picture}
+            className="card-media"
+          />
+          <div className="card-details">
+            <h2 className="card-head">{title}</h2>
+            <a href="#/" className="card-action-button">
+              SHARE
+            </a>
+            <a href="#/" className="card-action-button">
+              GO TO RECIPE
+            </a>
           </div>
-          <div class="card-shadow"></div>
         </div>
-      </div>
+
     );
   }
 }

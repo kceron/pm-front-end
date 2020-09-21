@@ -10,28 +10,28 @@ const Header = ({ currentUser, handleLogout }) => {
         <img src={require("../Components/logo/logooo.png")} alt="logo" />
       </div>
 
-      <div>
+      <div className="nav-container">
         {currentUser ? (
           <ul>
-            <li>
+              <li>
+                <Link to="/favorites">Favorites</Link>
+              </li>
+              <li>
               <button onClick={handleLogout}>Logout</button>
-            </li>
+             </li>
           </ul>
         ) : (
           <>
-            <div>
+        
               <ul>
                 <li>
                   <Link to="/home">Home</Link>
                 </li>
                 <li>
-                  <Link to="/login">Signup</Link>
-                </li>
-                <li>
-                  <Link to="/login">Login</Link>
+                  <Link to="/login">Signup or Login</Link>
                 </li>
               </ul>
-            </div>
+        
           </>
         )}
       </div>

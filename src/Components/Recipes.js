@@ -28,9 +28,12 @@ class Recipes extends React.Component {
 
         return (
             <div>
-                <ul>
+                {this.props.currentUser ? (
+                <h1>Welcome, {this.props.currentUser.username}</h1>
+              ) : null}
+                <div className="card-container">
                     {this.recipeItems()}
-                </ul>
+                </div>
             </div>
         )
     }

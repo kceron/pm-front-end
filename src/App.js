@@ -4,6 +4,7 @@ import BeforeLogin from "./BeforeLogin";
 import Header from "./Components/Header";
 import Recipes from "./Components/Recipes";
 import Home from "./Home";
+import RecipeDetail from "./Components/RecipeDetail";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 class App extends React.Component {
@@ -80,17 +81,21 @@ class App extends React.Component {
         <main>
           <Switch>
             <Route path="/home">
-              {currentUser ? (
-                <h1>Welcome, {currentUser.username}</h1>
-              ) : (
                 <Redirect to="/" />
-              )}
             </Route>
-            <Route
-              exact
-              path={"/"}
-              render={() => <Recipes recipes={recipes} />}
-            />
+
+            <Route exact path={"/"}>
+              <Recipes currentUser={currentUser} recipes={recipes} />
+            </Route>
+
+            {/* PENDING ROUTE FOR NEW  RECIPE */}
+            {/* <Route path="/recipes/new">
+              <RecipeForm onFormSubmit={this.handleAddRecipe} />
+            </Route> */}
+
+            <Route path="/recipes/:id">
+              <RecipeDetail />
+            </Route>
 
             <Route
               exact
@@ -104,6 +109,7 @@ class App extends React.Component {
                 />
               )}
             />
+
             <Route
               exact
               path={"/auth"}
@@ -115,6 +121,7 @@ class App extends React.Component {
                 />
               )}
             />
+
           </Switch>
         </main>
       </>
