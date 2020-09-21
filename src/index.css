@@ -27,7 +27,7 @@ h1 {
   
   .form-button {
 	border-radius: 20px;
-	border: 1px solid #28c282;
+	border: 1px solid #060606;
 	background-color: #ffcb47;
 	color: #ffffff;
 	font-size: 12px;
@@ -169,7 +169,7 @@ h1 {
   }
   
   .overlay {
-	background: #38cf90;
+	background: #060606;
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;

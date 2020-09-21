@@ -3,32 +3,37 @@ import RecipeCard from './RecipeCard'
 
 class Recipes extends React.Component {
     state = {
-        currentIndex: 0
+        selectedVegetarian: "",
+        favorite: false
     }
 
-
-    // renderRecipes() {
-    //     return this.props.recipes
-    //     // .slice(this.state.currentIndex, this.state.currentIndex + 8 )//slice to get paginated results
-    //     .map(recipe => 
-    //         <RecipeCard 
-    //             key={recipe.title}
-    //             recipe={recipe}
-    //         />
-    //         )
-    //     }
+    // RENDER INDIVIDUAL RECIPES 
+    recipeItems() {
+        return this.props.recipes.map(recipe =>
+            <RecipeCard 
+            key={recipe.id} 
+            title={recipe.title}
+            cooktime={recipe.cooktime}
+            ingredients={recipe.ingredients}
+            instructions={recipe.instructions}
+            picture={recipe.picture}
+            vegetarian={recipe.vegetarian}
+            favorite={recipe.favorite}
+            />
+            )
+    }
 
     render() {
-        console.log(this.props.recipes)
-        // const recipesArray = this.renderRecipes()
+        // console.log("FROM RECIPES", this.props.recipes)
 
         return (
             <div>
-                {/* <RecipeCard events={this.props}/> */}
+                <ul>
+                    {this.recipeItems()}
+                </ul>
             </div>
         )
     }
-
     }
 
 export default Recipes
