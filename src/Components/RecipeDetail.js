@@ -19,14 +19,14 @@ class RecipeDetail extends React.Component {
         <div class="card">
           {/* <img
             src={picture}
-            class="card-media"
+            className="card-media"
           />
-          <div class="card-details">
-            <h2 class="card-head">{title}</h2>
-            <a href="#/" class="card-action-button">
+          <div className="card-details">
+            <h2 className="card-head">{title}</h2>
+            <a href="#/" className="card-action-button">
               SHARE
             </a>
-            <a href="#/" class="card-action-button">
+            <a href="#/" className="card-action-button">
               GO TO RECIPE
             </a>
           </div> */}

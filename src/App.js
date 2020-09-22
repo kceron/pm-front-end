@@ -6,6 +6,7 @@ import Recipes from "./Components/Recipes";
 import Home from "./Home";
 import RecipeDetail from "./Components/RecipeDetail";
 import { Switch, Route, Redirect } from "react-router-dom";
+import FavRecipesList from "./Components/FavRecipesList";
 
 class App extends React.Component {
   state = {
@@ -50,6 +51,26 @@ class App extends React.Component {
     this.fetchAutologin();
   }
 
+  // UPDATE RECIPE ARRAY
+  handleUpdateRecipe = updatedRecipe => {
+    this.setState(prevState => {
+      const updatedRecipes = prevState.recipes.map(recipe => {
+        if (recipe.id === updatedRecipe.id) return updatedRecipe
+        return recipe 
+      })
+      return {
+        recipes: updatedRecipes
+      }
+    })
+  }
+
+  // HANDLE FAVORITES 
+  getFavorites = () => {
+    const favList = this.state.recipes.filter(recipe => recipe.favorite
+    )
+    return favList
+  }
+
   handleLogin = (currentUser) => {
     // set current user, then redirect to home page
     this.setState({ currentUser }, () => {
@@ -85,11 +106,23 @@ class App extends React.Component {
             </Route>
 
             <Route exact path={"/"}>
-              <Recipes currentUser={currentUser} recipes={recipes} />
+              <Recipes 
+              currentUser={currentUser} 
+              recipes={recipes} 
+              handleUpdateRecipe={this.handleUpdateRecipe} 
+             />
+            </Route>
+
+            <Route exact path={"/favorites"}>
+              <FavRecipesList 
+              currentUser={currentUser} 
+              recipes={recipes} 
+              favs={this.getFavorites}
+              />
             </Route>
 
             {/* PENDING ROUTE FOR NEW  RECIPE */}
-            {/* <Route path="/newrecipe">
+            {/* <Route exact path="/newrecipe">
               <RecipeForm onFormSubmit={this.handleAddRecipe} />
             </Route> */}
 

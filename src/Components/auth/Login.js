@@ -12,7 +12,7 @@ class Login extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log("From Login", this.state);
+    // console.log("From Login", this.state);
     // make a fetch request to login the current user
     // then set that user in state in our App component
     fetch("http://localhost:3000/login", {

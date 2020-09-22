@@ -9,23 +9,18 @@ class Recipes extends React.Component {
 
     // RENDER INDIVIDUAL RECIPES 
     recipeItems() {
+        console.log("FROM RECIPES", this.props)
         return this.props.recipes.map(recipe =>
             <RecipeCard 
             key={recipe.id} 
-            title={recipe.title}
-            cooktime={recipe.cooktime}
-            ingredients={recipe.ingredients}
-            instructions={recipe.instructions}
-            picture={recipe.picture}
-            vegetarian={recipe.vegetarian}
-            favorite={recipe.favorite}
+            recipe={recipe}
+            handleUpdateRecipe={this.props.handleUpdateRecipe}
+            currentUser = {this.props.currentUser}
             />
             )
     }
 
     render() {
-        // console.log("FROM RECIPES", this.props.recipes)
-
         return (
             <div>
                 {this.props.currentUser ? (
