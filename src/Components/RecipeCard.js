@@ -34,21 +34,24 @@ class RecipeCard extends React.Component {
     return (
 
         <div className="card">
-          <img src={picture} className="card-media" />
+          <h2 className="card-head">{title}</h2>
+          <img src={picture} alt="Recipe" className="card-media" />
           <div className="card-details">
-            <h2 className="card-head">{title}</h2>
-            {/* <Link to={`/recipes/:id`} className="card-action-button">
+            <Link to={`/recipes/:id`} className="card-action-button">
               SHARE
-            </Link> */}
-            { this.props.currentUser ?
-            <button onClick={this.toggleFavorite} className="favorite">{favorite ? "♥" : "♡"}</button>
-             : 
-              null
-            }
+            </Link>
             <Link to={`/recipes/:id`}  className="card-action-button">
               GO TO RECIPE
             </Link>
-        
+            { this.props.currentUser ?
+            <button 
+            // NEED TO ADD CSS FOR LIKE BUTTON
+            className="like-button"
+            onClick={this.toggleFavorite} 
+            className="favorite">{favorite ? "♥" : "♡"}</button>
+             : 
+              null
+            }        
           </div>
         </div>
 

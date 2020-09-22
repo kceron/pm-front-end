@@ -2,14 +2,14 @@ import React from 'react'
 import RecipeCard from './RecipeCard'
 
 class Recipes extends React.Component {
-    state = {
-        selectedVegetarian: "",
-        favorite: false
-    }
+    // state = {
+    //     selectedVegetarian: "",
+    //     favorite: false
+    // }
 
     // RENDER INDIVIDUAL RECIPES 
     recipeItems() {
-        console.log("FROM RECIPES", this.props)
+        // console.log("FROM RECIPES", this.props)
         return this.props.recipes.map(recipe =>
             <RecipeCard 
             key={recipe.id} 

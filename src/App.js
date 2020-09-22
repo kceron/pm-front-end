@@ -4,7 +4,7 @@ import BeforeLogin from "./BeforeLogin";
 import Header from "./Components/Header";
 import Recipes from "./Components/Recipes";
 import Home from "./Home";
-import RecipeDetail from "./Components/RecipeDetail";
+// import RecipeDetail from "./Components/RecipeDetail";
 import { Switch, Route, Redirect } from "react-router-dom";
 import FavRecipesList from "./Components/FavRecipesList";
 
@@ -118,6 +118,7 @@ class App extends React.Component {
               currentUser={currentUser} 
               recipes={recipes} 
               favs={this.getFavorites}
+              handleUpdateRecipe={this.props.handleUpdateRecipe}
               />
             </Route>
 
@@ -127,7 +128,7 @@ class App extends React.Component {
             </Route> */}
 
             <Route path="/recipes/:id">
-              <RecipeDetail />
+              {/* <FavRecipesList getFavorites={this.getFavorites}/> */}
             </Route>
 
             <Route
