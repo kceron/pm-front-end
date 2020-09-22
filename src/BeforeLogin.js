@@ -20,7 +20,7 @@ class BeforeLogin extends React.Component {
     });
 
   render() {
-    console.log("PROPS INSIDE BEFORE LG", this.props);
+    // console.log("PROPS INSIDE BEFORE LG", this.props);
     const { handleClickSignUpButton, handleClickSignInButton } = this;
     const { rightPanelActive } = this.state;
 

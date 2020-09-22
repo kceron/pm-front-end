@@ -89,7 +89,7 @@ class App extends React.Component {
             </Route>
 
             {/* PENDING ROUTE FOR NEW  RECIPE */}
-            {/* <Route path="/recipes/new">
+            {/* <Route path="/newrecipe">
               <RecipeForm onFormSubmit={this.handleAddRecipe} />
             </Route> */}
 

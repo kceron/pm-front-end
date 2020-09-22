@@ -8,7 +8,7 @@ class Overlay extends Component {
         <div className="overlay">
           <div className="overlay-panel overlay-left">
             <h1>Welcome</h1>
-            <p className="overlay-description">HELLO</p>
+            <p className="overlay-description">Let's cook!</p>
             <button
               className="ghost form-button"
               id="signIn"
@@ -19,7 +19,7 @@ class Overlay extends Component {
           </div>
           <div className="overlay-panel overlay-right">
             <h1>Hello!</h1>
-            <p className="overlay-description">Welcome to FOOOOOD</p>
+            <p className="overlay-description">Share your QUICK meals!!!</p>
             <button
               className="ghost form-button"
               id="signUp"

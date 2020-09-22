@@ -16,18 +16,6 @@
   .nav-container{
     width:30%;
   }
-
-  .nav-container button{
-    padding:10px 13px;
-    border:none;
-
-    outline:none;
-    color: #ffab40;
-    font-size: 16px;
-    font-weight: 800;
-    border-radius:30px;
-    background-color: #0605058f;
-  }
   
   header {
     height: 130px;
