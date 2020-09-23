@@ -119,7 +119,7 @@ class App extends React.Component {
               currentUser={currentUser} 
               recipes={recipes} 
               favs={this.getFavorites}
-              handleUpdateRecipe={this.props.handleUpdateRecipe}
+              handleUpdateRecipe={this.handleUpdateRecipe}
               />
             </Route>
 
@@ -129,7 +129,7 @@ class App extends React.Component {
             </Route> */}
 
             <Route path="/recipes/:id" render={routeProps => {
-              return <RecipeDetail match={routeProps.match}
+              return <RecipeDetail match={routeProps.match} />
             }} />
             
             <Route

@@ -24,7 +24,7 @@ class RecipeCard extends React.Component {
 
 
   render() {
-    // console.log("FROM R CARD", this.props.recipe);
+    // console.log("FROM R CARD", this.props);
     const {
       id,
       title,
@@ -49,7 +49,7 @@ class RecipeCard extends React.Component {
             // NEED TO ADD CSS FOR LIKE BUTTON
             className="like-button"
             onClick={this.toggleFavorite} 
-            className="favorite">{favorite ? "♥" : "♡"}</button>
+            className="favorite">{favorite ? "🧡" : "🤍"}</button>
              : 
               null
             }        

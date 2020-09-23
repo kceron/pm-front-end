@@ -11,12 +11,13 @@ class FavRecipesList extends React.Component {
           key={recipe.id}
           recipe={recipe}
           currentUser = {this.props.currentUser}
+          handleUpdateRecipe={this.props.handleUpdateRecipe}
         />
       ));
   };
 
   render() {
-    // console.log("FAVS", this.props);
+    console.log("FAVS", this.props);
     return (
       <div>
         <h1>My Favs:</h1>

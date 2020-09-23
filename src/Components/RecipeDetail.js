@@ -1,19 +1,31 @@
 import React from "react";
-import { Link } from 'react-router-dom'
-import "./RecipeCard.css";
+import { Link } from "react-router-dom";
 
 class RecipeDetail extends React.Component {
   state = {
-    recipe: null,
+    title: "",
+    cooktime: 0,
+    ingredients: "",
+    instructions: "",
+    picture: "",
+    vegetarian: false,
+    favorite: false,
   };
 
   componentDidMount() {
     const id = this.props.match.params.id;
     fetch(`http://localhost:3000/recipes/${id}`)
       .then((r) => r.json())
-      .then((recipe) => {
+      .then((recipE) => {
         this.setState({
-          recipe: recipe,
+          ...this.state,
+          title: recipE.title,
+          cooktime: recipE.cooktime,
+          ingredients: recipE.ingredients,
+          instructions: recipE.instructions,
+          picture: recipE.picture,
+          vegetarian: recipE.vegetarian,
+          favorite: recipE.favorite,
         });
       });
   }
@@ -36,7 +48,7 @@ class RecipeDetail extends React.Component {
 
   render() {
     console.log("FROM R DETAIL", this.props.match.params.id);
-    const { recipe } = this.state;
+    // const { recipe } = this.state;
 
     const {
       title,
@@ -46,26 +58,20 @@ class RecipeDetail extends React.Component {
       picture,
       vegetarian,
       favorite,
-    } = this.state.recipe;
+    } = this.state;
 
     return (
       <div className="card">
         <h2 className="card-head">{title}</h2>
         <img src={picture} alt={title} className="card-media" />
         <div className="new-details">
-          <strong>{cooktime}</strong>
-          <p>{ingredients}</p>
-          <p>{instructions}</p>
-          {vegetarian ? 
-          <strong>Vegetatian</strong>
-          :
-          null
-        }
+          <strong>{cooktime} min</strong>
+          <p>Ingredients: {ingredients}</p>
+          <br/>
+          <p>Steps: {instructions}</p>
+          {vegetarian ? <strong>Vegetarian</strong> : null}
         </div>
         <div className="card-details">
-          <Link to={`/recipes/:id`} className="card-action-button">
-            SHARE
-          </Link>
           {this.props.currentUser ? (
             <button
               // NEED TO ADD CSS FOR LIKE BUTTON
@@ -73,7 +79,7 @@ class RecipeDetail extends React.Component {
               onClick={this.toggleFavorite}
               className="favorite"
             >
-              {favorite ? "♥" : "♡"}
+              {favorite ? "🧡" : "🤍"}
             </button>
           ) : null}
         </div>
