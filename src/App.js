@@ -7,6 +7,7 @@ import Home from "./Home";
 // import RecipeDetail from "./Components/RecipeDetail";
 import { Switch, Route, Redirect } from "react-router-dom";
 import FavRecipesList from "./Components/FavRecipesList";
+import RecipeDetail from "./Components/RecipeDetail";
 
 class App extends React.Component {
   state = {
@@ -102,10 +103,10 @@ class App extends React.Component {
         <main>
           <Switch>
             <Route path="/home">
-                <Redirect to="/" />
+                <Redirect to="/recipes" />
             </Route>
 
-            <Route exact path={"/"}>
+            <Route exact path={"/recipes"}>
               <Recipes 
               currentUser={currentUser} 
               recipes={recipes} 
@@ -127,10 +128,10 @@ class App extends React.Component {
               <RecipeForm onFormSubmit={this.handleAddRecipe} />
             </Route> */}
 
-            <Route path="/recipes/:id">
-              {/* <FavRecipesList getFavorites={this.getFavorites}/> */}
-            </Route>
-
+            <Route path="/recipes/:id" render={routeProps => {
+              return <RecipeDetail match={routeProps.match}
+            }} />
+            
             <Route
               exact
               path={"/login"}

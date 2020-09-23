@@ -24,7 +24,7 @@ class Recipes extends React.Component {
         return (
             <div>
                 {this.props.currentUser ? (
-                <h1>Welcome, {this.props.currentUser.username}</h1>
+                <h1> Welcome, {this.props.currentUser.username.charAt(0).toUpperCase() + this.props.currentUser.username.slice(1) }! </h1>
               ) : null}
                 <div className="card-container">
                     {this.recipeItems()}

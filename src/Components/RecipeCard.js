@@ -26,6 +26,7 @@ class RecipeCard extends React.Component {
   render() {
     // console.log("FROM R CARD", this.props.recipe);
     const {
+      id,
       title,
       picture,
       favorite
@@ -40,7 +41,7 @@ class RecipeCard extends React.Component {
             <Link to={`/recipes/:id`} className="card-action-button">
               SHARE
             </Link>
-            <Link to={`/recipes/:id`}  className="card-action-button">
+            <Link to={`/recipes/${id}`}  className="card-action-button">
               GO TO RECIPE
             </Link>
             { this.props.currentUser ?
