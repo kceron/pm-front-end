@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import '../LikeButton.scss'
+// import { Link } from "react-router-dom";
 
 class RecipeDetail extends React.Component {
   state = {
@@ -47,7 +48,7 @@ class RecipeDetail extends React.Component {
   };
 
   render() {
-    console.log("FROM R DETAIL", this.props.match.params.id);
+    // console.log("FROM R DETAIL", this.props.match.params.id);
     // const { recipe } = this.state;
 
     const {
@@ -67,7 +68,7 @@ class RecipeDetail extends React.Component {
         <div className="new-details">
           <strong>{cooktime} min</strong>
           <p>Ingredients: {ingredients}</p>
-          <br/>
+          <br />
           <p>Steps: {instructions}</p>
           {vegetarian ? <strong>Vegetarian</strong> : null}
         </div>
@@ -77,9 +78,8 @@ class RecipeDetail extends React.Component {
               // NEED TO ADD CSS FOR LIKE BUTTON
               className="like-button"
               onClick={this.toggleFavorite}
-              className="favorite"
             >
-              {favorite ? "🧡" : "🤍"}
+              {favorite ? "🤤" : "😌"}
             </button>
           ) : null}
         </div>

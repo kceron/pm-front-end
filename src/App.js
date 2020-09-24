@@ -4,10 +4,10 @@ import BeforeLogin from "./BeforeLogin";
 import Header from "./Components/Header";
 import Recipes from "./Components/Recipes";
 import Home from "./Home";
-// import RecipeDetail from "./Components/RecipeDetail";
 import { Switch, Route, Redirect } from "react-router-dom";
 import FavRecipesList from "./Components/FavRecipesList";
 import RecipeDetail from "./Components/RecipeDetail";
+import RecipeForm from './Components/RecipeForm';
 
 class App extends React.Component {
   state = {
@@ -53,24 +53,30 @@ class App extends React.Component {
   }
 
   // UPDATE RECIPE ARRAY
-  handleUpdateRecipe = updatedRecipe => {
-    this.setState(prevState => {
-      const updatedRecipes = prevState.recipes.map(recipe => {
-        if (recipe.id === updatedRecipe.id) return updatedRecipe
-        return recipe 
-      })
+  handleUpdateRecipe = (updatedRecipe) => {
+    this.setState((prevState) => {
+      const updatedRecipes = prevState.recipes.map((recipe) => {
+        if (recipe.id === updatedRecipe.id) return updatedRecipe;
+        return recipe;
+      });
       return {
-        recipes: updatedRecipes
-      }
-    })
+        recipes: updatedRecipes,
+      };
+    });
+  };
+
+  // HANDLE NEW RECIPE
+  handleAddRecipe = newRecipe => {
+    this.setState(prevState => ({
+      recipes: [newRecipe, ...prevState.recipes]
+    }))
   }
 
-  // HANDLE FAVORITES 
+  // HANDLE FAVORITES
   getFavorites = () => {
-    const favList = this.state.recipes.filter(recipe => recipe.favorite
-    )
-    return favList
-  }
+    const favList = this.state.recipes.filter((recipe) => recipe.favorite);
+    return favList;
+  };
 
   handleLogin = (currentUser) => {
     // set current user, then redirect to home page
@@ -92,46 +98,46 @@ class App extends React.Component {
   };
 
   render() {
-    const { currentUser, recipes } = this.state
+    const { currentUser, recipes } = this.state;
     // console.log("RECIPES APP", recipes)
     return (
       <>
-        <Header
-          currentUser={currentUser}
-          handleLogout={this.handleLogout}
-        />
+        <Header currentUser={currentUser} handleLogout={this.handleLogout} />
         <main>
           <Switch>
             <Route path="/home">
-                <Redirect to="/recipes" />
+              <Redirect to="/recipes" />
             </Route>
 
             <Route exact path={"/recipes"}>
-              <Recipes 
-              currentUser={currentUser} 
-              recipes={recipes} 
-              handleUpdateRecipe={this.handleUpdateRecipe} 
-             />
-            </Route>
-
-            <Route exact path={"/favorites"}>
-              <FavRecipesList 
-              currentUser={currentUser} 
-              recipes={recipes} 
-              favs={this.getFavorites}
-              handleUpdateRecipe={this.handleUpdateRecipe}
+              <Recipes
+                currentUser={currentUser}
+                recipes={recipes}
+                handleUpdateRecipe={this.handleUpdateRecipe}
               />
             </Route>
 
-            {/* PENDING ROUTE FOR NEW  RECIPE */}
-            {/* <Route exact path="/newrecipe">
-              <RecipeForm onFormSubmit={this.handleAddRecipe} />
-            </Route> */}
+            <Route exact path={"/favorites"}>
+              <FavRecipesList
+                currentUser={currentUser}
+                recipes={recipes}
+                favs={this.getFavorites}
+                handleUpdateRecipe={this.handleUpdateRecipe}
+              />
+            </Route>
 
-            <Route path="/recipes/:id" render={routeProps => {
-              return <RecipeDetail match={routeProps.match} />
+          
+            <Route path="/recipes/new" render={routeProps => {
+              return <RecipeForm history={routeProps.history} onFormSubmit={this.handleAddRecipe} />
             }} />
-            
+
+            <Route
+              path="/recipes/:id"
+              render={(routeProps) => {
+                return <RecipeDetail match={routeProps.match} />;
+              }}
+            />
+
             <Route
               exact
               path={"/login"}
@@ -156,7 +162,6 @@ class App extends React.Component {
                 />
               )}
             />
-
           </Switch>
         </main>
       </>
