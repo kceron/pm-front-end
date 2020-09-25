@@ -16,6 +16,10 @@ class FavRecipesList extends React.Component {
       ));
   };
 
+// make another fetch to get the favs from a specific user instead of filtering *******
+
+
+
   render() {
     // console.log("FAVS", this.props);
     return (

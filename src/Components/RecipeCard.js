@@ -8,6 +8,7 @@ class RecipeCard extends React.Component {
     // update recipe on the server
     fetch(`http://localhost:3000/recipes/${id}`, {
       method: "PATCH",
+      credentials: "include", // sends cookies from logged in user
       headers: {
         "Content-Type": "application/json",
       },
