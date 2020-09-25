@@ -6,11 +6,11 @@ import "./RecipeDetail.css";
 class RecipeDetail extends React.Component {
   state = {
     title: "",
-    cooktime: 0,
+    cooktime: "",
     ingredients: "",
     instructions: "",
     picture: "",
-    category: false,
+    category: "",
     favorite: false,
   };
 
@@ -91,7 +91,7 @@ class RecipeDetail extends React.Component {
               className="like-button"
               onClick={this.toggleFavorite}
             >
-              {favorite ? "🤤" : "😌"}
+              {favorite ? "🖤" : "🤍"}
             </button>
           ) : null}
         </div>

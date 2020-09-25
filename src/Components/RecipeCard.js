@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 class RecipeCard extends React.Component {
   toggleFavorite = () => {
     const { id, favorite } = this.props.recipe;
-    // update listing on the server
+    // update recipe on the server
     fetch(`http://localhost:3000/recipes/${id}`, {
       method: "PATCH",
       headers: {
@@ -43,7 +43,7 @@ class RecipeCard extends React.Component {
               className="like-button"
               onClick={this.toggleFavorite}
             >
-              {favorite ? "🤤" : "😌"}
+              {favorite ? "🖤" : "🤍"}
             </button>
           ) : null}
         </div>
