@@ -3,18 +3,19 @@ import "./RecipeForm.css";
 
 const defaultState = {
   title: "",
-  cooktime: 0,
+  cooktime: "",
   ingredients: "",
   instructions: "",
-  picture: "",
-  vegetarian: false
+  picture: {},
+  category: ""
 }
 
 class RecipeForm extends React.Component {
   state = defaultState
 
   handleChange = event => {
-    const value = event.target.type === "number" ? parseInt(event.target.value) : event.target.value
+    event.persist()
+    const value = event.target.type === "file" ? event.target.files[0] : event.target.value
     this.setState({
       [event.target.name]: value
     })
@@ -22,17 +23,21 @@ class RecipeForm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-
+    let form = new FormData()
+    form.append("picture", this.state.picture)
+    form.append("title", this.state.title)
+    form.append("cooktime", this.state.cooktime)
+    form.append("ingredients", this.state.ingredients)
+    form.append("instructions", this.state.instructions)
+    form.append("category", this.state.category)
+    
+    console.log(form)
     fetch("http://localhost:3000/recipes", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(this.state)
+      body: form
     })
       .then(r => r.json())
       .then(newRecipe => {
-        // TODO: redirect! /recipes/newRecipeId
         this.props.history.push(`/recipes/${newRecipe.id}`)
 
         this.props.onFormSubmit(newRecipe)
@@ -40,29 +45,33 @@ class RecipeForm extends React.Component {
   }
 
   render() {
-    console.log(this.props)
+    console.log(this.state)
     return (
-      <div className="form-container">
+      <div className="form-new">
         <h2>New Recipe</h2>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="title">Title: </label>
           <input type="text" name="title" value={this.state.title} onChange={this.handleChange} />
 
           <label htmlFor="cooktime">Cooktime: </label>
-          <input type="number" name="cooktime" value={this.state.cooktime} onChange={this.handleChange} />
+          <input type="text" name="cooktime" value={this.state.cooktime} onChange={this.handleChange} />
 
           <label htmlFor="ingredients">Ingredients: </label>
-          <input type="text" name="ingredients" value={this.state.ingredients} onChange={this.handleChange} />
+          <textarea rows="10" name="ingredients" value={this.state.ingredients} onChange={this.handleChange} />
 
           <label htmlFor="instructions">Instructions: </label>
-          <input type="text" name="instructions" value={this.state.instructions} onChange={this.handleChange} />
+          <textarea rows="30" name="instructions" value={this.state.instructions} onChange={this.handleChange} />
 
-          <label htmlFor="picture">Picture: </label>
-          <input type="text" name="picture" value={this.state.picture} onChange={this.handleChange} />
+          <label htmlFor="picture">Picture Upload: </label>
+          <input type="file" name="picture"  onChange={this.handleChange} />
 
-          <label htmlFor="vegetarian">Vegetarian: </label>
-          <input type="checkbox" id="vegetarian" name="vegetarian" value={this.state.vegetarian} onChange={this.handleChange} />
-
+          <label htmlFor="category">Diet Category: </label>
+          <select name="category" value={this.state.category} onChange={this.handleChange}>
+            <option value="omnivore">Omnivore</option>
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Vegan">Vegan</option>
+            <option value="Pescatarian">Pescatarian</option>
+          </select>
 
           <input type="submit" value="Submit" />
         </form>

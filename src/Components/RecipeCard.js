@@ -28,8 +28,8 @@ class RecipeCard extends React.Component {
 
     return (
       <div className="card">
-        <h2 className="card-head">{title}</h2>
         <img src={picture} alt="Recipe" className="card-media" />
+        <h2 className="card-head">{title}</h2>
         <div className="card-details">
           <Link to={`/recipes/:id`} className="card-action-button">
             SHARE

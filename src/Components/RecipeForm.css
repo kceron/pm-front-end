@@ -1,5 +1,5 @@
 /* forms */
-.form-container {
+.form-new {
     width: 600px;
     margin: 0 auto 2rem;
     padding: 1.75rem;
@@ -8,24 +8,24 @@
     margin-top: 150px
   }
   
-  .form-container h2 {
+  .form-new h2 {
     padding-bottom: 1rem;
     border-bottom: 2px solid var(--light-gray);
   }
   
-  .form-container form {
+  .form-new form {
     display: flex;
     flex-direction: column;
     margin: 1rem 0;
   }
   
-  .form-container form label {
+  .form-new form label {
     font-size: 0.9rem;
   }
   
-  .form-container form input,
-  .form-container form textarea,
-  .form-container form select {
+  .form-new form input,
+  .form-new form textarea,
+  .form-new form select {
     margin-top: 0.25rem;
     margin-bottom: 1rem;
     padding: 0.5rem;
@@ -33,7 +33,7 @@
     border: 1px solid var(--gray);
   }
   
-  .form-container form input[type=submit] {
+  .form-new form input[type=submit] {
     margin: 1.5rem 0 1rem;
     width: 150px;
   }

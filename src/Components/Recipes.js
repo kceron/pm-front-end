@@ -2,10 +2,6 @@ import React from "react";
 import RecipeCard from "./RecipeCard";
 
 class Recipes extends React.Component {
-  // state = {
-  //     selectedVegetarian: "",
-  //     favorite: false
-  // }
 
   // RENDER INDIVIDUAL RECIPES
   recipeItems() {

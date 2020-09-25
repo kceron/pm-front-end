@@ -1,4 +1,5 @@
 import React from "react";
+import "./RecipeDetail.css";
 // import '../LikeButton.scss'
 // import { Link } from "react-router-dom";
 
@@ -9,7 +10,7 @@ class RecipeDetail extends React.Component {
     ingredients: "",
     instructions: "",
     picture: "",
-    vegetarian: false,
+    category: false,
     favorite: false,
   };
 
@@ -25,7 +26,7 @@ class RecipeDetail extends React.Component {
           ingredients: recipE.ingredients,
           instructions: recipE.instructions,
           picture: recipE.picture,
-          vegetarian: recipE.vegetarian,
+          category: recipE.category,
           favorite: recipE.favorite,
         });
       });
@@ -57,20 +58,31 @@ class RecipeDetail extends React.Component {
       ingredients,
       instructions,
       picture,
-      vegetarian,
+      category,
       favorite,
     } = this.state;
 
     return (
-      <div className="card">
-        <h2 className="card-head">{title}</h2>
-        <img src={picture} alt={title} className="card-media" />
+      <div className="card-detail">
+        <img src={picture} alt={title} className="card-pic" />
         <div className="new-details">
-          <strong>{cooktime} min</strong>
-          <p>Ingredients: {ingredients}</p>
+          <h1 className="recipe-detail-title">{title}</h1>
+          <strong className="cook-time">{cooktime} min</strong>
+          <p className="pformat">
+            <strong>Ingredients: </strong>
+            {ingredients}
+          </p>
           <br />
-          <p>Steps: {instructions}</p>
-          {vegetarian ? <strong>Vegetarian</strong> : null}
+          <p className="pformat">
+            <strong>Steps: </strong>
+            {instructions}
+          </p>
+          <br />
+          <p className="pformat">
+            <strong>Category: </strong>
+            <br />
+            {category}
+          </p>
         </div>
         <div className="card-details">
           {this.props.currentUser ? (

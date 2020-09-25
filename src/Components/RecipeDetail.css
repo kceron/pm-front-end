@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital@0;1&family=Roboto+Slab:wght@400;500;600&family=Roboto:wght@300;400;700&display=swap');
+
+.pformat {
+    white-space: pre-line;
+   
+}
+
+.pformat strong{
+    font-family: 'Roboto Slab', serif;
+    font-weight: 500;
+    font-size: 20px;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+html {
+    background-color: #ededed;
+    font: normal 14px / 20px 'Roboto', sans-serif;
+    padding: 0 0 25px;
+  }
+  
+  h1 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 25px;
+    /* margin-top: 25px; */
+    text-align: center;
+  }
+  
+  .clearfix:before,
+  .clearfix:after {
+      content: " ";
+      display: table;
+  }
+  
+  .clearfix:after {
+      clear: both;
+  }
+  
+  .card-detail {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: -1px 2px 4px rgba(0,0,0,.25), 1px 1px 3px rgba(0,0,0,.1);
+    margin:auto;
+    margin-top:150px;
+    max-width: 500px;
+  }
+
+  .recipe-detail-title{
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+      font-size:25px;
+     margin-top:10px;
+     margin-bottom: 35px;
+      text-align: left;
+  }
+
+  .card-container {
+    margin-top:150px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .card-pic {
+    /* width: 100%; */
+    display: block;
+    height: 300px;
+    width: 500px;
+    object-fit: cover;
+  }
+  
+  .card-details {
+    padding: 5px 15px;
+  }
+  
+  .card-head {
+    font-weight: 400;
+  }
+  
+  .card-head {
+    font-size: 20px;
+    padding: 20px;
+    /* margin-bottom: 15px; */
+  }
+
+  .new-details{
+      padding:30px;
+      font-family: 'Noto',serif;
+      font-size: 16px;
+  }
+
+  .new-details .cook-time{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size:15px;
+    padding: 5px 10px;
+    border-radius: 30px;
+    background-color: crimson;
+    color:white;
+    margin-bottom:14px;
+    display: inline-block;
+  }
+
+  /* BUTONS */
+  /* .card-action-button {
+    border-radius: 2px;
+    color: #FFAB40;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 500;
+    margin: 0;
+    padding: 10px;
+    text-decoration: none;
+  }
+  
+  .card-action-button:hover {
+    background-color: rgba(255 ,168 ,58, .2);
+  } */
+
+  /* .like-button {
+    padding: 2px !important;
+  } */
