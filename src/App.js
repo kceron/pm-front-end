@@ -27,6 +27,8 @@ class App extends React.Component {
   };
   // , () => console.log(this.state.recipes)
 
+
+
   // FETCH USER FOR AUTOLOGIN
   // check if user is logged in, and set current user in state
   fetchAutologin = () => {
@@ -52,29 +54,53 @@ class App extends React.Component {
     this.fetchAutologin();
   }
 
-  // UPDATE RECIPE ARRAY
+  // DELETE A RECIPE
+  handleRemoveRecipe = (resp) =>{
+    this.setState(prevState => ({
+      recipes: prevState.recipes.filter((recipe) => recipe.id !== resp.id)
+    }))
+  }
+
+  // UPDATE FAVS RECIPE ARRAY 
   // post request to send user id and recipe id
   handleUserFavs = (newFav) => {
-  // debugger
-    this.setState((prevState) => {
-      const updatedFavorites = prevState.currentUser.favorites.map((favArray) => {
-        debugger
-        // if (favArray.id === newFav.id) return newFav;
-        // return favArray;
-     
-      });
-      // debugger
-      // return {
-        // currentUser.favorites =  updatedFavorites,
-      // };
-    });
+    this.setState((prevState) => ({
+      ...prevState, 
+      currentUser: {
+        ...prevState.currentUser,
+        favorites: [
+          ...prevState.currentUser.favorites,
+          newFav
+        ]
+      }
+      }))
   };
 
-  // HANDLE FAVORITES
-  // getFavorites = () => {
-  //   const favList = this.state.recipes.filter((recipe) => recipe.favorite);
-  //   return favList;
-  // };
+   // UPDATE FAVS RECIPE ARRAY 
+  handleDeleteFavs = (deletedFav) => {
+    // debugger
+    const updatedFavs = this.state.currentUser.favorites.filter((favorite) => {
+      if (favorite.id !== deletedFav.id){
+        return true
+      }else{
+        return false
+      }
+    })
+      this.setState((prevState) => ({
+        ...prevState, 
+        currentUser: {
+          ...prevState.currentUser,
+          favorites: updatedFavs
+        }
+        }))
+    };
+
+  // FETCH FAVORITES
+  getFavorites = () => {
+    // 
+    const favList = this.state.recipes.filter((recipe) => recipe.favorite);
+    return favList;
+  };
 
   // HANDLE NEW RECIPE
   handleAddRecipe = (newRecipe) => {
@@ -116,6 +142,7 @@ class App extends React.Component {
 
             <Route exact path={"/recipes"}>
               <Recipes
+                handleDeleteFavs={this.handleDeleteFavs}
                 currentUser={currentUser}
                 recipes={recipes}
                 handleUserFavs={this.handleUserFavs}
@@ -148,6 +175,7 @@ class App extends React.Component {
               path="/recipes/:id"
               render={(routeProps) => {
                 return <RecipeDetail 
+                handleRemoveRecipe={this.handleRemoveRecipe}
                 currentUser={currentUser}
                 match={routeProps.match} />;
               }}

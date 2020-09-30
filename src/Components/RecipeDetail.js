@@ -32,7 +32,7 @@ class RecipeDetail extends React.Component {
 
   // toggleFavorite = () => {
   //   const { id, favorite } = this.state.recipe;
-  //   // update listing on the server
+  //   // update recipe on the server
   //   fetch(`http://localhost:3000/recipes/${id}`, {
   //     method: "PATCH",
   //     headers: {
@@ -45,6 +45,18 @@ class RecipeDetail extends React.Component {
   //       this.setState({ recipe: updatedRecipe });
   //     });
   // };
+  handleDeleteClick = () => {
+
+    const id = this.props.match.params.id;
+    // delete recipe on the server
+    fetch(`http://localhost:3000/recipes/${id}`, {
+      method: "DELETE"
+      })
+      .then((r) => r.json())
+      .then((resp) => {
+        this.props.handleRemoveRecipe(resp)
+      });
+  }
 
   render() {
     console.log("FROM R DETAIL", this.props);

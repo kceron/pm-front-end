@@ -11,6 +11,7 @@ class Recipes extends React.Component {
         key={recipe.id}
         recipe={recipe}
         handleUserFavs={this.props.handleUserFavs}
+        handleDeleteFavs={this.props.handleDeleteFavs}
         currentUser={this.props.currentUser}
       />
     ));

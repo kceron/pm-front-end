@@ -4,6 +4,7 @@ import RecipeCard from "./RecipeCard";
 class FavRecipesList extends React.Component {
   //ADD MAP TO THIS FUNCTION , IF ERROR PUT this,props.favs into  A VARIABLE
   renderFavs = () => {
+    console.log(this.props.currentUser)
     return this.props
       .favs()
       .map((recipe) => (
