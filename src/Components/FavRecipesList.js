@@ -11,7 +11,7 @@ class FavRecipesList extends React.Component {
           key={recipe.id}
           recipe={recipe}
           currentUser={this.props.currentUser}
-          handleUpdateRecipe={this.props.handleUpdateRecipe}
+          handleUserFavs={this.props.handleUpdateRecipe}
         />
       ));
   };

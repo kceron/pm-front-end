@@ -3,29 +3,48 @@ import "./RecipeCard.css";
 import { Link } from "react-router-dom";
 
 class RecipeCard extends React.Component {
-  toggleFavorite = () => {
-    const { id, favorite } = this.props.recipe;
-    // update recipe on the server
-    fetch(`http://localhost:3000/recipes/${id}`, {
-      method: "PATCH",
+  state = {
+    favorite: false
+  }
+
+  toggleFavorite = (event) => {
+    event.preventDefault()
+    const { user_id, id } = this.props.recipe;
+    this.setState(prevState => ({
+      favorite: !prevState.favorite
+    }))
+    
+    if (this.state.favorite) {
+      console.log("YASSSS PLEASEEEEEE")
+          // update recipe on the server
+    fetch(`http://localhost:3000/favorites`, {
+      method: "POST",
       credentials: "include", // sends cookies from logged in user
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ favorite: !favorite }),
+      body: JSON.stringify({user: user_id, recipeId: id}),
     })
       .then((r) => r.json())
       .then(
-        (updatedRecipe) => {
+        (newFav) => {
+          // console.log("NEW FAV", newFav)
           // use callback to update recipe in state
-          this.props.handleUpdateRecipe(updatedRecipe);
+          this.props.handleUserFavs(newFav);
         }
       );
+    }else {
+      // DELETE RECIPE FROM FAVS
+      // console.log()
+    }
+
   };
 
   render() {
-    // console.log("FROM R CARD", this.props);
-    const { id, title, picture, favorite } = this.props.recipe;
+    console.log("FROM R CARD", this.state.favorite);
+  
+    const { id, title, picture } = this.props.recipe;
+    const user = this.props.currentUser
 
     return (
       <div className="card">
@@ -38,15 +57,15 @@ class RecipeCard extends React.Component {
           <Link to={`/recipes/${id}`} className="card-action-button">
             GO TO RECIPE
           </Link>
-          {this.props.currentUser ? (
+          { user ? (
             <button
               // NEED TO ADD CSS FOR LIKE BUTTON
               className="like-button"
               onClick={this.toggleFavorite}
             >
-              {favorite ? "🖤" : "🤍"}
+              {this.state.favorite ? "🖤" : "🤍"}
             </button>
-          ) : null}
+           ) : null} 
         </div>
       </div>
     );

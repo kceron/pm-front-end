@@ -10,7 +10,7 @@ class Recipes extends React.Component {
       <RecipeCard
         key={recipe.id}
         recipe={recipe}
-        handleUpdateRecipe={this.props.handleUpdateRecipe}
+        handleUserFavs={this.props.handleUserFavs}
         currentUser={this.props.currentUser}
       />
     ));

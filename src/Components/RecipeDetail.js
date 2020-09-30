@@ -10,8 +10,7 @@ class RecipeDetail extends React.Component {
     ingredients: "",
     instructions: "",
     picture: "",
-    category: "",
-    favorite: false,
+    category: ""
   };
 
   componentDidMount() {
@@ -26,31 +25,30 @@ class RecipeDetail extends React.Component {
           ingredients: recipE.ingredients,
           instructions: recipE.instructions,
           picture: recipE.picture,
-          category: recipE.category,
-          favorite: recipE.favorite,
+          category: recipE.category
         });
       });
   }
 
-  toggleFavorite = () => {
-    const { id, favorite } = this.state.recipe;
-    // update listing on the server
-    fetch(`http://localhost:3000/recipes/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ favorite: !favorite }),
-    })
-      .then((r) => r.json())
-      .then((updatedRecipe) => {
-        this.setState({ recipe: updatedRecipe });
-      });
-  };
+  // toggleFavorite = () => {
+  //   const { id, favorite } = this.state.recipe;
+  //   // update listing on the server
+  //   fetch(`http://localhost:3000/recipes/${id}`, {
+  //     method: "PATCH",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ favorite: !favorite }),
+  //   })
+  //     .then((r) => r.json())
+  //     .then((updatedRecipe) => {
+  //       this.setState({ recipe: updatedRecipe });
+  //     });
+  // };
 
   render() {
-    // console.log("FROM R DETAIL", this.props.match.params.id);
-    // const { recipe } = this.state;
+    console.log("FROM R DETAIL", this.props);
+    const isEditable = true;
 
     const {
       title,
@@ -58,8 +56,7 @@ class RecipeDetail extends React.Component {
       ingredients,
       instructions,
       picture,
-      category,
-      favorite,
+      category
     } = this.state;
 
     return (
@@ -68,6 +65,24 @@ class RecipeDetail extends React.Component {
         <div className="new-details">
           <h1 className="recipe-detail-title">{title}</h1>
           <strong className="cook-time">{cooktime} min</strong>
+
+          <li>
+          {isEditable && (
+            <div className="actions">
+              <button onClick={this.handleEditClick}>
+                <span role="img" aria-label="edit">
+                  ✏️
+                </span>
+              </button>
+              <button onClick={this.handleDeleteClick}>
+                <span role="img" aria-label="delete">
+                  🗑
+                </span>
+              </button>
+            </div>
+          )}
+          </li>
+
           <p className="pformat">
             <strong>Ingredients: </strong>
             {ingredients}
@@ -89,12 +104,17 @@ class RecipeDetail extends React.Component {
             <button
               // NEED TO ADD CSS FOR LIKE BUTTON
               className="like-button"
-              onClick={this.toggleFavorite}
+              // onClick={this.toggleFavorite}
             >
-              {favorite ? "🖤" : "🤍"}
+              {/* {favorite ? "🖤" : "🤍"} */}
             </button>
           ) : null}
         </div>
+        <p className="pformat">
+            <strong>By: </strong>
+            <br />
+            {category}
+        </p>
       </div>
     );
   }

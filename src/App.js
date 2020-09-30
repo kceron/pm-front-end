@@ -7,7 +7,7 @@ import Home from "./Home";
 import { Switch, Route, Redirect } from "react-router-dom";
 import FavRecipesList from "./Components/FavRecipesList";
 import RecipeDetail from "./Components/RecipeDetail";
-import RecipeForm from './Components/RecipeForm';
+import RecipeForm from "./Components/RecipeForm";
 
 class App extends React.Component {
   state = {
@@ -53,29 +53,34 @@ class App extends React.Component {
   }
 
   // UPDATE RECIPE ARRAY
-  handleUpdateRecipe = (updatedRecipe) => {
+  // post request to send user id and recipe id
+  handleUserFavs = (newFav) => {
+  // debugger
     this.setState((prevState) => {
-      const updatedRecipes = prevState.recipes.map((recipe) => {
-        if (recipe.id === updatedRecipe.id) return updatedRecipe;
-        return recipe;
+      const updatedFavorites = prevState.currentUser.favorites.map((favArray) => {
+        debugger
+        // if (favArray.id === newFav.id) return newFav;
+        // return favArray;
+     
       });
-      return {
-        recipes: updatedRecipes,
-      };
+      // debugger
+      // return {
+        // currentUser.favorites =  updatedFavorites,
+      // };
     });
   };
 
-  // HANDLE NEW RECIPE
-  handleAddRecipe = newRecipe => {
-    this.setState(prevState => ({
-      recipes: [newRecipe, ...prevState.recipes]
-    }))
-  }
-
   // HANDLE FAVORITES
-  getFavorites = () => {
-    const favList = this.state.recipes.filter((recipe) => recipe.favorite);
-    return favList;
+  // getFavorites = () => {
+  //   const favList = this.state.recipes.filter((recipe) => recipe.favorite);
+  //   return favList;
+  // };
+
+  // HANDLE NEW RECIPE
+  handleAddRecipe = (newRecipe) => {
+    this.setState((prevState) => ({
+      recipes: [newRecipe, ...prevState.recipes],
+    }));
   };
 
   handleLogin = (currentUser) => {
@@ -92,7 +97,7 @@ class App extends React.Component {
       .then((r) => r.json())
       .then(() => {
         this.setState({ currentUser: null }, () => {
-          this.props.history.push("/");
+          this.props.history.push("/home");
         });
       });
   };
@@ -113,7 +118,7 @@ class App extends React.Component {
               <Recipes
                 currentUser={currentUser}
                 recipes={recipes}
-                handleUpdateRecipe={this.handleUpdateRecipe}
+                handleUserFavs={this.handleUserFavs}
               />
             </Route>
 
@@ -122,19 +127,29 @@ class App extends React.Component {
                 currentUser={currentUser}
                 recipes={recipes}
                 favs={this.getFavorites}
-                handleUpdateRecipe={this.handleUpdateRecipe}
+                handleUserFavs={this.handleUserFavs}
               />
             </Route>
 
-          
-            <Route path="/recipes/new" render={routeProps => {
-              return <RecipeForm history={routeProps.history} onFormSubmit={this.handleAddRecipe} />
-            }} />
+            <Route
+              path="/recipes/new"
+              render={(routeProps) => {
+                return (
+                  <RecipeForm
+                    currentUser={currentUser}
+                    history={routeProps.history}
+                    onFormSubmit={this.handleAddRecipe}
+                  />
+                );
+              }}
+            />
 
             <Route
               path="/recipes/:id"
               render={(routeProps) => {
-                return <RecipeDetail match={routeProps.match} />;
+                return <RecipeDetail 
+                currentUser={currentUser}
+                match={routeProps.match} />;
               }}
             />
 
