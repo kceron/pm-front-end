@@ -1,11 +1,15 @@
 body {
   margin: 0;
+  width: 100%;
+  height:100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -28,7 +32,7 @@ h1 {
   .form-button {
 	border-radius: 20px;
 	border: 1px solid#0605058f;
-	background-color: #ffab40;
+	background-color:#ff414d;;
 	color: #ffffff;
 	font-size: 12px;
 	font-weight: bold;

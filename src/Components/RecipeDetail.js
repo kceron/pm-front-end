@@ -12,7 +12,8 @@ class RecipeDetail extends React.Component {
     ingredients: "",
     instructions: "",
     picture: "",
-    category: ""
+    category: "",
+    user_id: 0
   };
 
   componentDidMount() {
@@ -27,7 +28,8 @@ class RecipeDetail extends React.Component {
           ingredients: recipE.ingredients,
           instructions: recipE.instructions,
           picture: recipE.picture,
-          category: recipE.category
+          category: recipE.category,
+          user_id: recipE.user_id
         });
       });
   }
@@ -49,7 +51,7 @@ class RecipeDetail extends React.Component {
   // };
 
   // DELETE RECIPE
-  handleDeleteClick = () => {
+  handleDeleteClick = (e) => {
     const id = this.props.match.params.id;
     fetch(`http://localhost:3000/recipes/${id}`, {
       method: "DELETE"
@@ -57,6 +59,7 @@ class RecipeDetail extends React.Component {
       .then((r) => r.json())
       .then((resp) => {
         this.props.handleRemoveRecipe(resp)
+        this.props.history.push("/home");
       });
   }
 
@@ -70,7 +73,8 @@ class RecipeDetail extends React.Component {
       ingredients,
       instructions,
       picture,
-      category
+      category,
+      user_id
     } = this.state;
 
     return (
@@ -81,8 +85,7 @@ class RecipeDetail extends React.Component {
           <div className="cook-edit-delete">
           <strong className="cook-time">{cooktime} min</strong>
 
-
-          {this.props.currentUser ? (
+          {this.props.currentUser && this.props.currentUser.id===user_id ? (
             <div className="actions">
               <Edit onClick={this.handleEditClick}/>
               <Delete onClick={this.handleDeleteClick}/>

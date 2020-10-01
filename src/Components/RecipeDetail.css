@@ -23,7 +23,7 @@
 html {
     background-color: #ffffff;
     font: normal 14px / 20px 'Roboto', sans-serif;
-    padding: 0 0 25px;
+
   }
   
   .clearfix:before,
@@ -47,6 +47,7 @@ html {
     /* padding:10px 20px; */
     margin-top:150px;
     max-width: 700px;
+    margin-bottom: 20px;
   }
 
   .recipe-detail-title{
@@ -78,10 +79,6 @@ html {
     padding: 5px 15px;
   }
   
-
-  
- 
-
   .new-details{
       padding:30px 50px;
       font-family: 'Noto',serif;
@@ -106,6 +103,7 @@ html {
     font-weight: 600;
     /* margin-bottom: 25px; */
     margin-top: 130px;
+    margin-bottom: -80px;
     text-align: left;
     margin-left: 60px;
     color:  #ff414d;

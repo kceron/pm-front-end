@@ -181,6 +181,7 @@ class App extends React.Component {
               render={(routeProps) => {
                 return <RecipeDetail 
                 handleRemoveRecipe={this.handleRemoveRecipe}
+                history={this.props.history}
                 currentUser={currentUser}
                 match={routeProps.match} />;
               }}
