@@ -5,6 +5,13 @@
    
 }
 
+.cook-edit-delete{
+  display: flex;
+  margin-bottom: 10px;;
+  justify-content: space-between;
+}
+
+
 .pformat strong{
     font-family: 'Roboto Slab', serif;
     font-weight: 500;
@@ -14,17 +21,9 @@
 }
 
 html {
-    background-color: #ededed;
+    background-color: #ffffff;
     font: normal 14px / 20px 'Roboto', sans-serif;
     padding: 0 0 25px;
-  }
-  
-  h1 {
-    font-size: 20px;
-    font-weight: 500;
-    margin-bottom: 25px;
-    /* margin-top: 25px; */
-    text-align: center;
   }
   
   .clearfix:before,
@@ -40,10 +39,14 @@ html {
   .card-detail {
     background-color: #fff;
     border-radius: 5px;
-    box-shadow: -1px 2px 4px rgba(0,0,0,.25), 1px 1px 3px rgba(0,0,0,.1);
+    box-shadow: 0 2.3px 8px rgba(0, 0, 0, 0.018),
+    0 5.4px 18.6px rgba(0, 0, 0, 0.026), 0 9.7px 33.4px rgba(0, 0, 0, 0.032),
+    0 16.1px 55.4px rgba(0, 0, 0, 0.038), 0 26.5px 91.3px rgba(0, 0, 0, 0.044),
+    0 46.2px 159.5px rgba(0, 0, 0, 0.052), 0 100px 345px rgba(0, 0, 0, 0.07);
     margin:auto;
+    /* padding:10px 20px; */
     margin-top:150px;
-    max-width: 500px;
+    max-width: 700px;
   }
 
   .recipe-detail-title{
@@ -53,10 +56,11 @@ html {
      margin-top:10px;
      margin-bottom: 35px;
       text-align: left;
+      line-height: 30px;
   }
 
   .card-container {
-    margin-top:150px;
+    margin-top:10px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -66,7 +70,7 @@ html {
     /* width: 100%; */
     display: block;
     height: 300px;
-    width: 500px;
+    width: 700px;
     object-fit: cover;
   }
   
@@ -74,18 +78,12 @@ html {
     padding: 5px 15px;
   }
   
-  .card-head {
-    font-weight: 400;
-  }
+
   
-  .card-head {
-    font-size: 20px;
-    padding: 20px;
-    /* margin-bottom: 15px; */
-  }
+ 
 
   .new-details{
-      padding:30px;
+      padding:30px 50px;
       font-family: 'Noto',serif;
       font-size: 16px;
   }
@@ -98,8 +96,27 @@ html {
     border-radius: 30px;
     background-color: crimson;
     color:white;
+    margin-top:10px;
     margin-bottom:14px;
     display: inline-block;
+  }
+
+    .username {
+    font-size: 25px;
+    font-weight: 600;
+    /* margin-bottom: 25px; */
+    margin-top: 130px;
+    text-align: left;
+    margin-left: 60px;
+    color:  #ff414d;
+    font-family: 'Roboto',sans-serif;
+  }
+
+  .actions{
+    display: flex;
+    gap:10px;
+    align-self:flex-start;
+    align-items: flex-end;
   }
 
   /* BUTONS */

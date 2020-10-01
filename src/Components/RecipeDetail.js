@@ -2,6 +2,8 @@ import React from "react";
 import "./RecipeDetail.css";
 // import '../LikeButton.scss'
 // import { Link } from "react-router-dom";
+import {ReactComponent as Edit} from './edit.svg'
+import {ReactComponent as Delete} from './close.svg'
 
 class RecipeDetail extends React.Component {
   state = {
@@ -45,10 +47,10 @@ class RecipeDetail extends React.Component {
   //       this.setState({ recipe: updatedRecipe });
   //     });
   // };
-  handleDeleteClick = () => {
 
+  // DELETE RECIPE
+  handleDeleteClick = () => {
     const id = this.props.match.params.id;
-    // delete recipe on the server
     fetch(`http://localhost:3000/recipes/${id}`, {
       method: "DELETE"
       })
@@ -58,9 +60,9 @@ class RecipeDetail extends React.Component {
       });
   }
 
+  // need to add EDIT RECIPE FUNCTION here
+
   render() {
-    console.log("FROM R DETAIL", this.props);
-    const isEditable = true;
 
     const {
       title,
@@ -76,25 +78,18 @@ class RecipeDetail extends React.Component {
         <img src={picture} alt={title} className="card-pic" />
         <div className="new-details">
           <h1 className="recipe-detail-title">{title}</h1>
+          <div className="cook-edit-delete">
           <strong className="cook-time">{cooktime} min</strong>
 
-          <li>
-          {isEditable && (
-            <div className="actions">
-              <button onClick={this.handleEditClick}>
-                <span role="img" aria-label="edit">
-                  ✏️
-                </span>
-              </button>
-              <button onClick={this.handleDeleteClick}>
-                <span role="img" aria-label="delete">
-                  🗑
-                </span>
-              </button>
-            </div>
-          )}
-          </li>
 
+          {this.props.currentUser ? (
+            <div className="actions">
+              <Edit onClick={this.handleEditClick}/>
+              <Delete onClick={this.handleDeleteClick}/>
+            </div>
+          ) : null }
+
+</div>
           <p className="pformat">
             <strong>Ingredients: </strong>
             {ingredients}
@@ -122,11 +117,13 @@ class RecipeDetail extends React.Component {
             </button>
           ) : null}
         </div>
-        <p className="pformat">
+
+        {/* NEED TO ADD WHO CREATED THE RECIPE */}
+        {/* <p className="pformat">
             <strong>By: </strong>
             <br />
             {category}
-        </p>
+        </p> */}
       </div>
     );
   }

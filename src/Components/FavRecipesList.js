@@ -2,7 +2,7 @@ import React from "react";
 import RecipeCard from "./RecipeCard";
 
 class FavRecipesList extends React.Component {
-  //ADD MAP TO THIS FUNCTION , IF ERROR PUT this,props.favs into  A VARIABLE
+
   renderFavs = () => {
     console.log(this.props.currentUser)
     return this.props
@@ -16,10 +16,6 @@ class FavRecipesList extends React.Component {
         />
       ));
   };
-
-// make another fetch to get the favs from a specific user instead of filtering *******
-
-
 
   render() {
     // console.log("FAVS", this.props);

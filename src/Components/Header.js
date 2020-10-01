@@ -12,6 +12,16 @@ const Header = ({ currentUser, handleLogout }) => {
         </NavLink>
       </div>
 
+      {/* {currentUser ? (
+          <h1>
+            {" "}
+            Welcome,{" "}
+            {currentUser.username.charAt(0).toUpperCase() +
+              currentUser.username.slice(1)}
+            !{" "}
+          </h1>
+        ) : null} */}
+
       <div className="nav-container">
         {currentUser ? (
           <ul>

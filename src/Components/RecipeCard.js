@@ -1,6 +1,8 @@
 import React from "react";
 import "./RecipeCard.css";
 import { Link } from "react-router-dom";
+import {ReactComponent as Heart} from './like.svg'
+import {ReactComponent as HeartFill} from './like-fill.svg'
 
 class RecipeCard extends React.Component {
   state = {
@@ -8,15 +10,16 @@ class RecipeCard extends React.Component {
     favoriteId: null
   }
 
+  // SET FAVS STATE
   componentDidMount() {
     if (this.props.currentUser){
-      const x = this.props.currentUser.favorites.find(favorite => {
+      const fav = this.props.currentUser.favorites.find(favorite => {
         if (favorite.recipe_id === this.props.recipe.id) {
           return true 
         }
       });
-      if (x) {
-        this.setState({favorite: true, favoriteId: x.id})
+      if (fav) {
+        this.setState({favorite: true, favoriteId: fav.id})
       }
     }
   }
@@ -26,7 +29,7 @@ class RecipeCard extends React.Component {
     const { id } = this.props.recipe;
     
     if (!this.state.favorite) {
-          // update recipe on the server
+    // UPDATE FAVS ON SERVER
     fetch(`http://localhost:3000/favorites`, {
       method: "POST",
       credentials: "include", // sends cookies from logged in user
@@ -38,7 +41,6 @@ class RecipeCard extends React.Component {
       .then((r) => r.json())
       .then(
         (newFav) => {
-          // console.log("NEW FAV", newFav)
           // use callback to update recipe in state
           this.setState(prevState => ({
             favorite: !prevState.favorite, favoriteId: newFav.id
@@ -64,14 +66,13 @@ class RecipeCard extends React.Component {
   };
 
   render() {
-    console.log("FROM R CARD", this.props.currentUser);
-  
     const { id, title, picture } = this.props.recipe;
     const user = this.props.currentUser
 
     return (
       <div className="card">
         <img src={picture} alt="Recipe" className="card-media" />
+        <div className="card-header-details">
         <h2 className="card-head">{title}</h2>
         <div className="card-details">
           <Link to={`/recipes/:id`} className="card-action-button">
@@ -81,14 +82,15 @@ class RecipeCard extends React.Component {
             GO TO RECIPE
           </Link>
           { user ? (
-            <button
+            <div
               // NEED TO ADD CSS FOR LIKE BUTTON
               className="like-button"
               onClick={this.toggleFavorite}
             >
-              {this.state.favorite ? "🖤" : "🤍"}
-            </button>
+              {this.state.favorite ? <HeartFill/> : <Heart/>}
+            </div>
            ) : null} 
+        </div>
         </div>
       </div>
     );

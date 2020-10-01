@@ -27,10 +27,7 @@ class App extends React.Component {
   };
   // , () => console.log(this.state.recipes)
 
-
-
   // FETCH USER FOR AUTOLOGIN
-  // check if user is logged in, and set current user in state
   fetchAutologin = () => {
     fetch("http://localhost:3000/autologin", {
       credentials: "include",
@@ -76,7 +73,7 @@ class App extends React.Component {
       }))
   };
 
-   // UPDATE FAVS RECIPE ARRAY 
+   // DELETE FAVS FROM RECIPE ARRAY 
   handleDeleteFavs = (deletedFav) => {
     // debugger
     const updatedFavs = this.state.currentUser.favorites.filter((favorite) => {
@@ -97,7 +94,13 @@ class App extends React.Component {
 
   // FETCH FAVORITES
   getFavorites = () => {
-    // 
+    // fetch all favs 
+
+    // before set state filter the results by currentuser_id 
+
+    // call it on component did mount 
+
+    // just pass current_user to favs
     const favList = this.state.recipes.filter((recipe) => recipe.favorite);
     return favList;
   };
@@ -130,10 +133,12 @@ class App extends React.Component {
 
   render() {
     const { currentUser, recipes } = this.state;
-    // console.log("RECIPES APP", recipes)
+ 
     return (
       <>
-        <Header currentUser={currentUser} handleLogout={this.handleLogout} />
+        <Header 
+        currentUser={currentUser} 
+        handleLogout={this.handleLogout} />
         <main>
           <Switch>
             <Route path="/home">

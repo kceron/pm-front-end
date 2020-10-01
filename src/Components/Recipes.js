@@ -21,7 +21,7 @@ class Recipes extends React.Component {
     return (
       <div>
         {this.props.currentUser ? (
-          <h1>
+          <h1 className="username">
             {" "}
             Welcome,{" "}
             {this.props.currentUser.username.charAt(0).toUpperCase() +

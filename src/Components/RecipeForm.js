@@ -63,8 +63,9 @@ class RecipeForm extends React.Component {
           <label htmlFor="instructions">Instructions: </label>
           <textarea rows="30" name="instructions" value={this.state.instructions} onChange={this.handleChange} />
 
-          <label htmlFor="picture">Picture Upload: </label>
-          <input type="file" name="picture"  onChange={this.handleChange} />
+          <label className="fileupload" htmlFor="picture">Picture Upload: <input type="file" name="picture"  onChange={this.handleChange} />
+          </label>
+          
 
           <label htmlFor="category">Diet Category: </label>
           <select name="category" value={this.state.category} onChange={this.handleChange}>
