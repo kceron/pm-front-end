@@ -13,6 +13,7 @@ class App extends React.Component {
   state = {
     currentUser: null,
     recipes: [],
+    favorites: [],
   };
 
   // FETCH RECIPES FUNCTION
@@ -49,60 +50,59 @@ class App extends React.Component {
   componentDidMount() {
     this.fetchRecipes();
     this.fetchAutologin();
+    this.getFavorites();
   }
 
   // DELETE A RECIPE
-  handleRemoveRecipe = (resp) =>{
-    this.setState(prevState => ({
-      recipes: prevState.recipes.filter((recipe) => recipe.id !== resp.id)
-    }))
-  }
-
-  // UPDATE FAVS RECIPE ARRAY 
-  // post request to send user id and recipe id
-  handleUserFavs = (newFav) => {
+  handleRemoveRecipe = (resp) => {
     this.setState((prevState) => ({
-      ...prevState, 
-      currentUser: {
-        ...prevState.currentUser,
-        favorites: [
-          ...prevState.currentUser.favorites,
-          newFav
-        ]
-      }
-      }))
+      recipes: prevState.recipes.filter((recipe) => recipe.id !== resp.id),
+    }));
   };
 
-   // DELETE FAVS FROM RECIPE ARRAY 
+  // UPDATE FAVS ARRAY
+  handleUserFavs = (newFav) => {
+    this.setState((prevState) => ({
+      ...prevState,
+        favorites: [...prevState.favorites, newFav],
+      currentUser: {
+        ...prevState.currentUser,
+        favorites: [...prevState.currentUser.favorites, newFav],
+      },
+    }));
+  };
+
+  // DELETE FAVS FROM RECIPE ARRAY
   handleDeleteFavs = (deletedFav) => {
-    // debugger
     const updatedFavs = this.state.currentUser.favorites.filter((favorite) => {
-      if (favorite.id !== deletedFav.id){
-        return true
-      }else{
-        return false
+      if (favorite.id !== deletedFav.id) {
+        return true;
+      } else {
+        return false;
       }
-    })
-      this.setState((prevState) => ({
-        ...prevState, 
-        currentUser: {
-          ...prevState.currentUser,
-          favorites: updatedFavs
-        }
-        }))
-    };
+    });
+    this.setState((prevState) => ({
+      ...prevState,
+      favorites: [...updatedFavs],
+      currentUser: {
+        ...prevState.currentUser,
+        favorites: updatedFavs,
+      },
+    }));
+  };
 
   // FETCH FAVORITES
   getFavorites = () => {
-    // fetch all favs 
-
-    // before set state filter the results by currentuser_id 
-
-    // call it on component did mount 
-
-    // just pass current_user to favs
-    const favList = this.state.recipes.filter((recipe) => recipe.favorite);
-    return favList;
+    fetch("http://localhost:3000/favorites", {
+      credentials: "include"
+    })
+      .then((r) => r.json())
+      .then((favsArr) => {
+        this.setState(
+          {
+            favorites: favsArr,
+          });
+      });
   };
 
   // HANDLE NEW RECIPE
@@ -132,13 +132,11 @@ class App extends React.Component {
   };
 
   render() {
-    const { currentUser, recipes } = this.state;
- 
+    const { currentUser, recipes, favorites } = this.state;
+
     return (
       <>
-        <Header 
-        currentUser={currentUser} 
-        handleLogout={this.handleLogout} />
+        <Header currentUser={currentUser} handleLogout={this.handleLogout} />
         <main>
           <Switch>
             <Route path="/home">
@@ -156,10 +154,9 @@ class App extends React.Component {
 
             <Route exact path={"/favorites"}>
               <FavRecipesList
+                handleDeleteFavs={this.handleDeleteFavs}
                 currentUser={currentUser}
-                recipes={recipes}
-                favs={this.getFavorites}
-                handleUserFavs={this.handleUserFavs}
+                favorites={this.state.favorites}
               />
             </Route>
 
@@ -179,11 +176,14 @@ class App extends React.Component {
             <Route
               path="/recipes/:id"
               render={(routeProps) => {
-                return <RecipeDetail 
-                handleRemoveRecipe={this.handleRemoveRecipe}
-                history={this.props.history}
-                currentUser={currentUser}
-                match={routeProps.match} />;
+                return (
+                  <RecipeDetail
+                    handleRemoveRecipe={this.handleRemoveRecipe}
+                    history={this.props.history}
+                    currentUser={currentUser}
+                    match={routeProps.match}
+                  />
+                );
               }}
             />
 

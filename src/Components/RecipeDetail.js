@@ -1,6 +1,5 @@
 import React from "react";
 import "./RecipeDetail.css";
-// import '../LikeButton.scss'
 // import { Link } from "react-router-dom";
 import {ReactComponent as Edit} from './edit.svg'
 import {ReactComponent as Delete} from './close.svg'
@@ -63,7 +62,7 @@ class RecipeDetail extends React.Component {
       });
   }
 
-  // need to add EDIT RECIPE FUNCTION here
+  // need to add EDIT RECIPE FUNCTION here //
 
   render() {
 

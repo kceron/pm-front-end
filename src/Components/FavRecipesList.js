@@ -4,25 +4,23 @@ import RecipeCard from "./RecipeCard";
 class FavRecipesList extends React.Component {
 
   renderFavs = () => {
-    console.log(this.props.currentUser)
-    return this.props
-      .favs()
-      .map((recipe) => (
+    return this.props.favorites.map((fav) => (
         <RecipeCard
-          key={recipe.id}
-          recipe={recipe}
+          key={fav.id}
+          recipe={fav.recipe}
           currentUser={this.props.currentUser}
-          handleUserFavs={this.props.handleUpdateRecipe}
+          handleDeleteFavs={this.props.handleDeleteFavs}
         />
       ));
   };
 
   render() {
-    // console.log("FAVS", this.props);
     return (
       <div>
         <h1>My Favs:</h1>
-        <div className="card-container">{this.renderFavs()}</div>
+      
+        <div className="card-container">{ this.props.favorites.length > 0 ? this.renderFavs() : "Add some Recipes to your Favs List" } </div>
+ 
       </div>
     );
   }

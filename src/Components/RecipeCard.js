@@ -56,7 +56,6 @@ class RecipeCard extends React.Component {
       })
       .then((r) => r.json())
       .then((data) => {
-        console.log("DATA", data)
         this.props.handleDeleteFavs(data)
         this.setState(prevState => ({
           favorite: !prevState.favorite, favoriteId: null

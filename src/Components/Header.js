@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink, useHistory } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./Header.css";
 import "../Components/logo/logooo.png";
 
@@ -11,16 +11,6 @@ const Header = ({ currentUser, handleLogout }) => {
           <img src={require("../Components/logo/logooo.png")} alt="logo" />
         </NavLink>
       </div>
-
-      {/* {currentUser ? (
-          <h1>
-            {" "}
-            Welcome,{" "}
-            {currentUser.username.charAt(0).toUpperCase() +
-              currentUser.username.slice(1)}
-            !{" "}
-          </h1>
-        ) : null} */}
 
       <div className="nav-container">
         {currentUser ? (
