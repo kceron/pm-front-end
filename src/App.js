@@ -60,6 +60,19 @@ class App extends React.Component {
     }));
   };
 
+  // EDIT A RECIPE
+  handleEditRecipe = (updatedRecipe) => {
+    this.setState(prevState => {
+      const updatedRecipes = prevState.recipes.map(recipe => {
+        if (recipe.id === updatedRecipe.id) return updatedRecipe
+        return recipe
+      })
+      return {
+        recipes: updatedRecipes
+      }
+    })
+  }
+
   // UPDATE FAVS ARRAY
   handleUserFavs = (newFav) => {
     this.setState((prevState) => ({
@@ -91,7 +104,7 @@ class App extends React.Component {
     }));
   };
 
-  // FETCH FAVORITES
+  // FETCH FAVORITES CALLED ON COMPDIDMOUNT
   getFavorites = () => {
     fetch("http://localhost:3000/favorites", {
       credentials: "include"
@@ -132,7 +145,7 @@ class App extends React.Component {
   };
 
   render() {
-    const { currentUser, recipes, favorites } = this.state;
+    const { currentUser, recipes } = this.state;
 
     return (
       <>
@@ -182,6 +195,7 @@ class App extends React.Component {
                     history={this.props.history}
                     currentUser={currentUser}
                     match={routeProps.match}
+                    handleEditRecipe={this.handleEditRecipe}
                   />
                 );
               }}

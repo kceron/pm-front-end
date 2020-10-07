@@ -16,6 +16,9 @@ const Header = ({ currentUser, handleLogout }) => {
         {currentUser ? (
           <ul>
             <li>
+              <Link to="/myrecipes">My Recipes</Link>
+            </li>
+            <li>
               <Link to="/favorites">Favorites</Link>
             </li>
             <li>

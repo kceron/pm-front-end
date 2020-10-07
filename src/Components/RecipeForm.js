@@ -32,7 +32,7 @@ class RecipeForm extends React.Component {
     form.append("instructions", this.state.instructions);
     form.append("category", this.state.category);
     form.append("user_id", this.props.currentUser.id);
-    // console.log(form)
+
     fetch("http://localhost:3000/recipes", {
       method: "POST",
       body: form,
@@ -45,7 +45,6 @@ class RecipeForm extends React.Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <div className="form-new">
         <h2>New Recipe</h2>
