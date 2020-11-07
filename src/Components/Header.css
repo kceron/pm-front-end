@@ -16,7 +16,7 @@
   }
 
   .nav-container{
-    width:30%;
+    width:auto;
   }
   
   header {
@@ -50,16 +50,16 @@
     height: 200vh;
   }
   
-  ul {
+  ul.nav-container {
     display: flex;
-    width:100%;
-    justify-content: flex-start;
+    width: 40%;
+    max-width: 60%;
+    justify-content: space-around;
     align-content: center;
   }
   
   li {
     height: 100%;
-    width: 80px;
     background-color: transparent;
     color: #2e2e2e;
     list-style-type: none;
@@ -69,15 +69,25 @@
     font-weight: 600;
     cursor: pointer;
     font-family: 'Roboto',sans-serif;
-  }
 
-  li:nth-child(2){
-    width:50%;
   }
   
   li a {
     text-decoration: none;
     color: inherit;
     font-size: 16px;
+    padding:5px 10px;
+    display: inline-block;
+    border-radius: 10px;
+    transition: 0.2s ease;
+  }
+
+  li a:hover{
+    background-color: hsl(354, 60%, 93%);
+  }
+
+  li a:active{
+    background-color: #f8f186;
+    transform: scale(0.9);
   }
   

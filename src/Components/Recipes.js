@@ -5,7 +5,6 @@ class Recipes extends React.Component {
 
   // RENDER INDIVIDUAL RECIPES
   recipeItems() {
-    // console.log("FROM RECIPES", this.props)
     return this.props.recipes.map((recipe) => (
       <RecipeCard
         key={recipe.id}

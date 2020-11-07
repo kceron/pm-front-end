@@ -12,9 +12,9 @@ const Header = ({ currentUser, handleLogout }) => {
         </NavLink>
       </div>
 
-      <div className="nav-container">
+    
         {currentUser ? (
-          <ul>
+          <ul className="nav-container">
             <li>
               <Link to="/myrecipes">My Recipes</Link>
             </li>
@@ -42,7 +42,6 @@ const Header = ({ currentUser, handleLogout }) => {
             </ul>
           </>
         )}
-      </div>
     </header>
   );
 };
